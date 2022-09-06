@@ -5,7 +5,7 @@ namespace PhoneBook2.Model
 {
     class MyDbContext : DbContext
     {
-        public MyDbContext():base("connectionString"){ }
+        public MyDbContext():base("Messenger") { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contacts { get; set; }
