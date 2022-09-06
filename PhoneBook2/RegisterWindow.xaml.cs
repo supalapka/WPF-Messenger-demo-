@@ -2,6 +2,7 @@
 using PhoneBook2.Components;
 using PhoneBook2.Model;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -11,20 +12,25 @@ namespace PhoneBook2
     public partial class RegisterWindow : Page//, INotifyPropertyChanged
     {
         User user = new User();
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new MyDbContext())
             {
+                var isExist = context.Users.Where(x => x.login == LoginTextBox.Text).FirstOrDefault();
+                if (isExist != null) 
+                {
+                    MessageBox.Show("login already using");
+                    return;
+                }
+
                 user.login = LoginTextBox.Text;  //fix
                 user.password = PassBox1.Password;  //fix
 
                 context.Users.Add(user);
                 context.SaveChanges();
             }
-
             this.NavigationService.Navigate(new Uri("LoginWindow.xaml", UriKind.RelativeOrAbsolute));
-
-
         }
 
         private void PassChanged(object sender, RoutedEventArgs e)
@@ -54,8 +60,6 @@ namespace PhoneBook2
 
             BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute));
             user.image = MyFunctionsClass.ConvertImageToByte(bitmapImage);
-
-
         }
     }
 }

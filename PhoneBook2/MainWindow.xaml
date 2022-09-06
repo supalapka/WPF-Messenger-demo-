@@ -42,11 +42,11 @@
                 </StackPanel>
             </Button>
 
-            <Button Name="CreateGroup_button" Grid.Row="3" Height="80" Width="80" VerticalAlignment="Bottom" Click="CreateGroup_button_Click">
+            <!--<Button Name="CreateGroup_button" Grid.Row="3" Height="80" Width="80" VerticalAlignment="Bottom" Click="CreateGroup_button_Click">
                 <StackPanel >
                     <Image Source="/group_icon.png" Width="40" Height="40"/>
                 </StackPanel>
-            </Button>
+            </Button>-->
 
           
          
